@@ -4,19 +4,14 @@
 
 
 <script>
-// Criar uma variável PHP para armazenar os dados
 <?php echo "var dados = " . json_encode($telefonesParaEditar) . ";"; ?>
 </script>
-<!-- <script type="module" src="{{ asset('js/index.js') }}"></script> -->
-
 
 @section('content')
 
-
-
 <h1>Edição de pessoa</h1>
 
-<form method="post" action="/pessoa/create">
+<form method="post" action="/pessoa/update/{{$pessoaParaEditar->id}}" id="form-pessoa">
     @csrf
     <div id="pessoa-formulario">
         <div>
@@ -68,6 +63,7 @@
             <option value="{{$sigla}}">{{$sigla}}</option>
             @endforeach
         </select>
+
     </div>
 
     <table>
@@ -82,13 +78,28 @@
 
 
         <tbody id="telefone-descricao"></tbody>
-        <div id="adicionar-linha-telefone">+</div>
     </table>
+    <span id="adicionar-linha-telefone">+</span>
 
-    <button type="submit" name="/pessoa/edit/id">Gravar</button>
-    <!-- <button type="submit" name="/pessoa/delete">Excluir</button> -->
 
+    <div>
+        <form method="post" action="/pessoa/update/{{$pessoaParaEditar->id}}">
+            @csrf
+            @method('PUT')
+            <button type="submit">
+                Gravar</button>
+        </form>
+
+        <form method="post" action="/pessoa/delete/{{$pessoaParaEditar->id}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">
+                Excluir</button>
+        </form>
+
+    </div>
 </form>
+
 
 <div></div>
 

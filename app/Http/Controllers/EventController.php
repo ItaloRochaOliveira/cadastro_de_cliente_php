@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Pessoas;
 use App\Models\Telefones;
+use tidy;
 
 class EventController extends Controller
 {
@@ -90,7 +91,9 @@ class EventController extends Controller
         $pessoas = app('pessoas');
 
         $pessoaParaEditar = Pessoas::findOrFail($id);
-        $telefonesParaEditar = Telefones::findOrFail($pessoaParaEditar->id);
+        $telefonesParaEditar = Telefones::where(
+            'id_pessoa', '=', $pessoaParaEditar->id
+        )->get();
 
         return view('EditUserView', [
             'siglas' => $this->siglas, 
@@ -98,5 +101,67 @@ class EventController extends Controller
             'pessoaParaEditar' => $pessoaParaEditar, 
             'telefonesParaEditar' => $telefonesParaEditar
         ]);
+    }
+
+    public function update(Request $request){
+        $id = $request->id;
+
+        $databasePessoa = Pessoas::find($id);
+
+        $databasePessoa->update([
+            'nome' => $request["nome"],
+            'cpf' => $request['cpf'],
+            'rg' => $request['rg'],
+            'cep' => $request['cep'],
+            'logradouro' => $request['logradouro'],
+            'complemento' => $request['complemento'],
+            'setor' => $request['setor'],
+            'cidade' => $request['cidade'],
+            'uf' => $request['uf'],
+        ]);
+
+
+        $telefonesParaEditar = Telefones::where(
+            'id_pessoa', '=', $id
+        )->get();
+
+        foreach($request->telefone as $it => $telefone){
+            
+            if(isset($telefonesParaEditar[$it])){
+                $telefoneAtual = Telefones::findOrFail($telefonesParaEditar[$it]->id);
+               $telefoneAtual->update([
+                'telefone' => $telefone['telefone'], 
+                'descricao' => $telefone['descricao'] 
+            ]);
+            } else {
+                if(!empty($telefone['telefone'])){
+                    $databaseTelefone = new Telefones([
+                        'telefone' => $telefone['telefone'], 
+                        'descricao' => $telefone['descricao'] , 
+                        'id_pessoa' => $databasePessoa->id
+                    ]);
+
+                    $databaseTelefone->save();
+            }
+            }
+        }
+
+        return redirect("/pessoa/edit/{$id}");
+    }
+
+    public function delete(Request $request){
+        $id = $request->id;
+
+        $telefonesParaEditar = Telefones::where(
+            'id_pessoa', '=', $id
+        )->get();
+
+        foreach($telefonesParaEditar as $it => $telefone){
+            Telefones::findOrFail($telefone->id)->delete();
+        } 
+               
+        Pessoas::findOrFail($id)->delete();
+
+        return redirect("/")->with("msg", "Pessoa Excluida com sucesso.");
     }
 }

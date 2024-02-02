@@ -20,3 +20,7 @@ Route::get('/', [EventController::class, 'index']);
 Route::post('/pessoa/create', [EventController::class, 'store']);
 
 Route::get('/pessoa/edit/{id}', [EventController::class, 'edit']);
+
+Route::put('/pessoa/update/{id}', [EventController::class, 'update']);
+
+Route::delete('/pessoa/delete/{id}', [EventController::class, 'delete']);

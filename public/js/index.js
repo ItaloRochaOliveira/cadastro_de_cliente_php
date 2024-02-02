@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log(dados);
-
     //table
     function telephoneTableEvents() {
         let tabelaPricipal = document.getElementById("telefone-descricao");
@@ -8,23 +6,44 @@ document.addEventListener("DOMContentLoaded", function () {
             "adicionar-linha-telefone"
         );
 
-        for (let i = 0; i <= 5; i++) {
-            tabelaPricipal.insertAdjacentHTML(
-                "beforeend",
-                `
+        const dateExist = typeof dados != "undefined";
+
+        if (dateExist) {
+            for (let i = 0; i <= dados.length - 1; i++) {
+                tabelaPricipal.insertAdjacentHTML(
+                    "beforeend",
+                    `
                    <tr>
                        ${
                            i == 0
-                               ? `<td><input type="text" id="telefone" class="telefone" name="telefone[${i}][telefone]" value="${
-                                     dados ? dados.telefone : ""
-                                 }"></td>`
+                               ? `<td><input type="text" id="telefone" class="telefone" name="telefone[${i}][telefone]" value="${dados[i].telefone}"></td>`
+                               : `<td><input type="text" class="telefone" name="telefone[${i}][telefone]" value="${dados[i].telefone}"></td>`
+                       }
+                       <td><input type="text" name="telefone[${i}][descricao]" value="${
+                        dados[i].descricao
+                    }"></td>
+                   </tr>
+    
+        `
+                );
+            }
+        } else {
+            for (let i = 0; i <= 5; i++) {
+                tabelaPricipal.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                   <tr>
+                       ${
+                           i == 0
+                               ? `<td><input type="text" id="telefone" class="telefone" name="telefone[${i}][telefone]""></td>`
                                : `<td><input type="text" class="telefone" name="telefone[${i}][telefone]"></td>`
                        }
                        <td><input type="text" name="telefone[${i}][descricao]"></td>
                    </tr>
     
         `
-            );
+                );
+            }
         }
 
         addTabelaTelefone.addEventListener("click", () => {
