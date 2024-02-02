@@ -31,7 +31,7 @@ Os conteúdos principais a serem explorados são:
 ## 💻Tecnologias
 
 ![PHP](https://img.shields.io/badge/php-blue?style=for-the-badge&logo=php&logoColor=black)
-![Laravel](https://img.shields.io/badge/laravel-white?style=for-the-badge&logo=laravel&logoColor=green)
+![Laravel](https://img.shields.io/badge/laravel-white?style=for-the-badge&logo=laravel&logoColor=red)
 ![PostgresSQL](https://img.shields.io/badge/Postgresql-blue?style=for-the-badge&logo=Postgresql&logoColor=white)
 
 ## 📫 Contato
