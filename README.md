@@ -12,6 +12,16 @@ Os conteúdos principais a serem explorados são:
 - Arquitetura MVC;
 - PHP;
 
+### Layout Cadastro
+
+| <img src="/assents/layout_cadastro.png" width=190 padding=10><br><sub>layout cadastro</sub> |
+| :---------------------------------------------------------------------------------: |
+
+### Layout Edit
+
+| <img src="/assents/layout_edit.png" width=100%><br><sub>layout edit</sub><br> | 
+| :----------------------------------------------------------------------------: |
+
 
 ## Funcionalidades
 
