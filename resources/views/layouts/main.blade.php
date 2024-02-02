@@ -31,9 +31,9 @@
           <SiGmail size={"25px"} /> 
         </Link>
       </Flex> -->
-    <footer>
+    <!-- <footer>
         <p>Italo Rocha Oliveira &copy; 2024</p>
-    </footer>
+    </footer> -->
 </body>
 
 </html>
