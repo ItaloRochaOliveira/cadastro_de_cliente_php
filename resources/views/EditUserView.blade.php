@@ -9,7 +9,7 @@
 
 @section('content')
 
-<h1>Edição de pessoa</h1>
+<h1 class="title">Edição de pessoa</h1>
 
 <form method="post" action="/pessoa/update/{{$pessoaParaEditar->id}}" id="form-pessoa">
     @csrf
@@ -29,7 +29,7 @@
             <input type="text" name="rg" id="rg" value="{{$pessoaParaEditar->rg}}">
         </div>
 
-        <h3>Endereço</h3>
+        <h3 class="title">Endereço</h3>
         <div>
             <label for="cep">CEP:</label>
             <input type="text" name="cep" id="cep" value="{{$pessoaParaEditar->cep}}">
@@ -55,57 +55,65 @@
             <input type="text" name="cidade" id="cidade" value="{{$pessoaParaEditar->cidade}}">
         </div>
 
-        <label for="uf">UF:</label>
-        <select id="uf">
-            <option value="{{empty($pessoaParaEditar->uf) ? 'select' : $pessoaParaEditar->uf}}">
-                {{empty($pessoaParaEditar->uf) ? "select" : $pessoaParaEditar->uf}}</option>
-            @foreach ($siglas as $i => $sigla)
-            <option value="{{$sigla}}">{{$sigla}}</option>
-            @endforeach
-        </select>
+        <div id="id">
+            <label for="uf">UF:</label>
+            <select id="uf">
+                <option value="{{empty($pessoaParaEditar->uf) ? 'select' : $pessoaParaEditar->uf}}">
+                    {{empty($pessoaParaEditar->uf) ? "select" : $pessoaParaEditar->uf}}</option>
+                @foreach ($siglas as $i => $sigla)
+                <option value="{{$sigla}}">{{$sigla}}</option>
+                @endforeach
+            </select>
+        </div>
 
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th><label for="telefone">Telefone</label></th>
-                <th><label for="descricao">Descrição</label></th>
-            </tr>
-        </thead>
+    <div id="center-telephones">
+        <div id="table-telephones">
+            <table>
+                <thead>
+                    <tr>
+                        <th><label for="telefone">Telefone</label></th>
+                        <th><label for="descricao">Descrição</label></th>
+                    </tr>
+                </thead>
 
-        <div id="dados" data-pessoa="{{ json_encode($pessoaParaEditar) }}"></div>
-
-
-        <tbody id="telefone-descricao"></tbody>
-    </table>
-    <span id="adicionar-linha-telefone">+</span>
+                <div id="dados" data-pessoa="{{ json_encode($pessoaParaEditar) }}"></div>
 
 
-    <div>
-        <form method="post" action="/pessoa/update/{{$pessoaParaEditar->id}}">
-            @csrf
-            @method('PUT')
-            <button type="submit">
-                Gravar</button>
-        </form>
+                <tbody id="telefone-descricao"></tbody>
+            </table>
+            <div id="test">
+                <span id="adicionar-linha-telefone">+</span>
+            </div>
+        </div>
 
-        <form method="post" action="/pessoa/delete/{{$pessoaParaEditar->id}}">
-            @csrf
-            @method('DELETE')
-            <button type="submit">
-                Excluir</button>
-        </form>
 
+        <div id="botoes">
+
+            <form action="post" action="/pessoa/update/{{$pessoaParaEditar->id}}">
+                @csrf
+                @method('PUT')
+                <button type="submit" id="gravar-edit">Gravar</button>
+            </form>
+
+            <form method="post" action="/pessoa/delete/{{$pessoaParaEditar->id}}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">
+                    Excluir</button>
+            </form>
+
+        </div>
     </div>
 </form>
 
 
-<div></div>
+<div id="linha"></div>
 
-<table>
+<table id="print-users">
     <caption>
-        <h2>Dados gravados</h2>
+        <h2 class="title">Dados gravados</h2>
     </caption>
 
     <thead>
