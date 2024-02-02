@@ -5,39 +5,59 @@
 @section('content')
 
 <h1>Cadastro de pessoa</h1>
-<form method="post" action="">
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome">
 
-    <label for="cpf">CPF:</label>
-    <input type="text" name="cpf" id="cpf">
+<form method="post" action="/pessoa/create">
+    @csrf
+    <div id="pessoa-formulario">
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome">
+        </div>
 
-    <label for="rg">RG:</label>
-    <input type="text" name="rg" id="rg">
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" id="cpf">
+        </div>
 
-    <h3>Endereço</h3>
-    <label for="cep">CEP:</label>
-    <input type="text" name="cep" id="cep">
+        <div>
+            <label for="rg">RG:</label>
+            <input type="text" name="rg" id="rg">
+        </div>
 
-    <label for="logradouro">Logradouro:</label>
-    <input type="text" name="logradouro" id="logradouro">
+        <h3>Endereço</h3>
+        <div>
+            <label for="cep">CEP:</label>
+            <input type="text" name="cep" id="cep">
+        </div>
 
-    <label for="complemento">Complemento:</label>
-    <input type="text" name="complemento" id="complemento">
+        <div>
+            <label for="logradouro">Logradouro:</label>
+            <input type="text" name="logradouro" id="logradouro">
+        </div>
 
-    <label for="setor">Setor:</label>
-    <input type="text" name="setor" id="setor">
+        <div>
+            <label for="complemento">Complemento:</label>
+            <input type="text" name="complemento" id="complemento">
+        </div>
 
-    <label for="cidade">Cidade:</label>
-    <input type="text" name="cidade" id="cidade">
+        <div>
+            <label for="setor">Setor:</label>
+            <input type="text" name="setor" id="setor">
+        </div>
 
-    <label for="uf">UF:</label>
-    <select id="uf">
-        <option value="none">Select</option>
-        @foreach ($siglas as $i => $sigla)
-        <option value="{{$sigla}}">{{$sigla}}</option>
-        @endforeach
-    </select>
+        <div>
+            <label for="cidade">Cidade:</label>
+            <input type="text" name="cidade" id="cidade">
+        </div>
+
+        <label for="uf">UF:</label>
+        <select id="uf">
+            <option value="none">Select</option>
+            @foreach ($siglas as $i => $sigla)
+            <option value="{{$sigla}}">{{$sigla}}</option>
+            @endforeach
+        </select>
+    </div>
 
     <table>
         <thead>
@@ -47,29 +67,8 @@
             </tr>
         </thead>
 
-        <tbody>
-            <tr>
-                <td><input type="text" id="telefone" name="telefone[]"></td>
-                <td><input type="text" id="descricao" name="descricao[]"></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="telefone[]"></td>
-                <td><input type="text" name="descricao[]"></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="telefone[]"></td>
-                <td><input type="text" name="descricao[]"></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="telefone[]"></td>
-                <td><input type="text" name="descricao[]"></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="telefone[]"></td>
-                <td><input type="text" name="descricao[]"></td>
-            </tr>
-
-        </tbody>
+        <tbody id="telefone-descricao"></tbody>
+        <div id="adicionar-linha-telefone">+</div>
     </table>
 
     <button type="submit">Gravar</button>
@@ -97,6 +96,18 @@
         @foreach ($pessoas as $i => $pessoa)
         <tr>
             <th>{{$pessoa->nome}}</th>
+            <th>{{$pessoa->cpf}}</th>
+            <th>{{$pessoa->rg}}</th>
+            <th>{{$pessoa->cep}}</th>
+            <th>
+                @if(isset($pessoa->telefone))
+                @foreach ($pessoa->telefone as $i => $telefone)
+                <p>{{$telefone->telefone}} - {{$telefone->descricao}}</p>
+                @endforeach
+
+                @endif
+            </th>
+            <th><button><a href="/pessoa/edit/{{$pessoa->id}}">editar</a></button></th>
         </tr>
         @endforeach
     </tbody>

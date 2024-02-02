@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 
 Route::get('/', [EventController::class, 'index']);
+
+Route::post('/pessoa/create', [EventController::class, 'store']);
+
+// Route::post('/pessoa/edit/{id}', [EventController::class, 'edit']);
