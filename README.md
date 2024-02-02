@@ -33,6 +33,20 @@ Os conteúdos principais a serem explorados são:
   - DELETE: Deletar usuários;
 ```
 
+## 📄Concepção do Projeto
+
+### inicializando
+```bash
+#baixando dependências
+composer install
+
+#verificar conexão com banco de dados:
+php artisan migrate
+
+# executando o projeto
+php artisan serve
+```
+
 ## 💡Programas utilizados:
 
 - VSCode;
