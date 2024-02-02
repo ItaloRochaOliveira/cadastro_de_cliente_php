@@ -1,9 +1,160 @@
 * {
-    /* margin: 0;
+    margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%; */
+    font-size: 100%;
     box-sizing: border-box;
     font: inherit;
     vertical-align: baseline;
+}
+
+.title {
+    font-weight: bold;
+}
+
+h1,
+h2,
+h3 {
+    text-align: start;
+    font-size: 20px;
+
+    margin: 10px 0;
+}
+
+h3 {
+    font-size: 0 18px;
+}
+
+form {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+label {
+    margin-right: 5px;
+}
+
+input {
+    margin: 5px 0;
+}
+
+#pessoa-formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#pessoa-formulario div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#pessoa-formulario div:last-child {
+    width: 160px;
+}
+
+#pessoa-formulario select {
+    border: 1px solid black;
+}
+
+#pessoa-formulario input {
+    border: 0.1px solid black;
+    background-color: white;
+
+    height: 20px;
+}
+
+#table-telephones {
+    justify-items: center;
+    border-collapse: collapse;
+}
+
+#center-telephones {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* width: 50%; */
+    margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+    #pessoa-formulario {
+        width: 100%;
+        margin: auto;
+    }
+
+    #table-telephones {
+        width: 100%;
+        margin: 30px auto;
+    }
+}
+
+#table-telephones input {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#table-telephones th,
+td {
+    border: 1px solid black;
+}
+
+#table-telephones input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+#adicionar-linha-telefone {
+    justify-self: center;
+    text-align: center;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 60px;
+}
+
+button {
+    border: 1px solid black;
+    padding: 1px 4px;
+    width: 60px;
+}
+
+#gravar {
+    display: flex;
+    justify-content: start;
+}
+
+#linha {
+    border-bottom: 0.1px solid black;
+    margin: 10px 0;
+}
+
+#print-users {
+    justify-self: center;
+
+    border-collapse: collapse;
+
+    margin: 0 15px;
+}
+
+#print-users table,
+#print-users td,
+#print-users th {
+    padding: 8px;
+
+    border: 1px solid black;
+
+    text-align: center;
+}
+
+#print-users tbody {
+    padding: 10px;
+}
+
+#print-users tr {
+    margin: 20px;
 }
