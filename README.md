@@ -27,8 +27,8 @@ Os conteúdos principais a serem explorados são:
 
 ```bash
 . Crud de clintes:
-  - POST: Criar usuários com seu respectivos endereço e seus telefones.
-  - GET: Acessar usuários, onde já é feito em uma tabela no front.
+  - POST: Criar usuários com seu respectivos endereço e seus telefones;
+  - GET: Acessar usuários, onde já é feito em uma tabela no front;
   - PUT: Atualizar os valores dos usuários;
   - DELETE: Deletar usuários;
 ```
@@ -37,13 +37,13 @@ Os conteúdos principais a serem explorados são:
 
 ### inicializando
 ```bash
-#baixando dependências
+#baixando dependências:
 composer install
 
 #verificar conexão com banco de dados:
 php artisan migrate
 
-# executando o projeto
+# executando o projeto:
 php artisan serve
 ```
 
