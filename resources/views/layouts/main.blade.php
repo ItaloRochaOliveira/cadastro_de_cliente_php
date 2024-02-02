@@ -14,7 +14,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/app.css')}}">
 
 
-    <script type="module" src="{{asset ('js/index.js')}}"></script>
+    <script type="module" src="{{asset ('js/index.js')}}" defer></script>
 
 </head>
 

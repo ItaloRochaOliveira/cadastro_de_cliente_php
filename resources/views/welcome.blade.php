@@ -6,83 +6,86 @@
 
 <h1 class="title">Cadastro de pessoa</h1>
 
-<form method="post" action="/pessoa/create">
-    @csrf
-    <div id="pessoa-formulario">
-        <div>
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome">
-        </div>
-
-        <div>
-            <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" id="cpf">
-        </div>
-
-        <div>
-            <label for="rg">RG:</label>
-            <input type="text" name="rg" id="rg">
-        </div>
-
-        <h3 class="title">Endereço</h3>
-        <div>
-            <label for="cep">CEP:</label>
-            <input type="text" name="cep" id="cep">
-        </div>
-
-        <div>
-            <label for="logradouro">Logradouro:</label>
-            <input type="text" name="logradouro" id="logradouro">
-        </div>
-
-        <div>
-            <label for="complemento">Complemento:</label>
-            <input type="text" name="complemento" id="complemento">
-        </div>
-
-        <div>
-            <label for="setor">Setor:</label>
-            <input type="text" name="setor" id="setor">
-        </div>
-
-        <div>
-            <label for="cidade">Cidade:</label>
-            <input type="text" name="cidade" id="cidade">
-        </div>
-
-        <div id="block">
-            <label for="uf">UF:</label>
-            <select id="uf">
-                <option value="none">Select</option>
-                @foreach ($siglas as $i => $sigla)
-                <option value="{{$sigla}}">{{$sigla}}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-
-
-    <div id="center-telephones">
-        <div>
-            <table id="table-telephones">
-                <thead>
-                    <tr>
-                        <th><label for="telefone" class="title">Telefone</label></th>
-                        <th><label for="descricao" class="title">Descrição</label></th>
-                    </tr>
-                </thead>
-
-                <tbody id="telefone-descricao"></tbody>
-            </table>
+<div>
+    <form method="post" action="/pessoa/create">
+        @csrf
+        <div id="pessoa-formulario">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nome">
+            </div>
 
             <div>
-                <div id="adicionar-linha-telefone">+</div>
+                <label for="cpf">CPF:</label>
+                <input type="text" name="cpf" id="cpf">
+            </div>
+
+            <div>
+                <label for="rg">RG:</label>
+                <input type="text" name="rg" id="rg">
+            </div>
+
+            <h3 class="title">Endereço</h3>
+            <div>
+                <label for="cep">CEP:</label>
+                <input type="text" name="cep" id="cep">
+            </div>
+
+            <div>
+                <label for="logradouro">Logradouro:</label>
+                <input type="text" name="logradouro" id="logradouro">
+            </div>
+
+            <div>
+                <label for="complemento">Complemento:</label>
+                <input type="text" name="complemento" id="complemento">
+            </div>
+
+            <div>
+                <label for="setor">Setor:</label>
+                <input type="text" name="setor" id="setor">
+            </div>
+
+            <div>
+                <label for="cidade">Cidade:</label>
+                <input type="text" name="cidade" id="cidade">
+            </div>
+
+            <div id="block">
+                <label for="uf">UF:</label>
+                <select id="uf">
+                    <option value="none">Select</option>
+                    @foreach ($siglas as $i => $sigla)
+                    <option value="{{$sigla}}">{{$sigla}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
 
-        <button type="submit" id="gravar">Gravar</button>
-    </div>
-</form>
+
+        <div id="center-telephones">
+            <div id="table-telephones">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><label for="telefone" class="title">Telefone</label></th>
+                            <th><label for="descricao" class="title">Descrição</label></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="telefone-descricao"></tbody>
+                </table>
+
+                <div id="test">
+                    <div id="adicionar-linha-telefone">+</div>
+                </div>
+            </div>
+
+            <button type="submit" id="gravar">Gravar</button>
+        </div>
+    </form>
+
+</div>
 
 <div id="linha"></div>
 
