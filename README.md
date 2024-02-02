@@ -14,7 +14,7 @@ Os conteúdos principais a serem explorados são:
 
 ### Layout Cadastro
 
-| <img src="/assets/layout_cadastro.png" width=190 padding=10><br><sub>layout cadastro</sub> |
+| <img src="/assets/layout_cadastro.png" width=100% padding=10><br><sub>layout cadastro</sub> |
 | :---------------------------------------------------------------------------------: |
 
 ### Layout Edit
