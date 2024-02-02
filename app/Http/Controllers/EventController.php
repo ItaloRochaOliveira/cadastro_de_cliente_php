@@ -1,70 +1,52 @@
 <?php
 
-namespace App\Models;
 namespace App\Http\Controllers;
 
 
 use App\Http\Requests\EventStoreRequest;
 use Illuminate\Http\Request;
 
-use App\PessoaModel;
-use App\Models\TelefoneModel;
 use App\Models\Pessoas;
 use App\Models\Telefones;
-use Illuminate\Support\Facades\Log;
-use PessoaModel as GlobalPessoaModel;
 
 class EventController extends Controller
 {
+    public $siglas = [
+        'AC',
+        'AL',
+        'AP',
+        'AM',
+        'BA',
+        'CE',
+        'DF',
+        'ES',
+        'GO',
+        'MA',
+        'MS',
+        'MT',
+        'MG',
+        'PA',
+        'PB',
+        'PR',
+        'PE',
+        'PI',
+        'RJ',
+        'RN',
+        'RS',
+        'RO',
+        'RR',
+        'SC',
+        'SP',
+        'SE',
+        'TO',
+    ];
+
+
     public function index(){
-        $siglas = [
-            'AC',
-            'AL',
-            'AP',
-            'AM',
-            'BA',
-            'CE',
-            'DF',
-            'ES',
-            'GO',
-            'MA',
-            'MS',
-            'MT',
-            'MG',
-            'PA',
-            'PB',
-            'PR',
-            'PE',
-            'PI',
-            'RJ',
-            'RN',
-            'RS',
-            'RO',
-            'RR',
-            'SC',
-            'SP',
-            'SE',
-            'TO',
-        ];
-
-        $pessoas = Pessoas::all();
-        $telefones = Telefones::all();
-
-        $pessoas[0]->id;
-
         
-        foreach($pessoas as $ip => $pessoa){
-            $telefonesDaPessoa = array();
-            foreach($telefones as $it => $telefone){
-                if($pessoa->id == $telefone->id_pessoa){
-                    // echo $telefone;
-                    array_push($telefonesDaPessoa, $telefone);
-                    $pessoas[$ip]->telefone = $telefonesDaPessoa;
-                }
-            }
-        }
+        $pessoas = app('pessoas');
     
-        return view('welcome', ['siglas' => $siglas, "pessoas" => $pessoas]);
+        return view('welcome', ['siglas' => $this->siglas, "pessoas" => $pessoas]);
     }
 
     public function store(Request $request){
@@ -104,7 +86,17 @@ class EventController extends Controller
         return redirect("/");
     }
 
-    // public function edit($id){
-        
-    // }
+    public function edit($id){
+        $pessoas = app('pessoas');
+
+        $pessoaParaEditar = Pessoas::findOrFail($id);
+        $telefonesParaEditar = Telefones::findOrFail($pessoaParaEditar->id);
+
+        return view('EditUserView', [
+            'siglas' => $this->siglas, 
+            "pessoas" => $pessoas, 
+            'pessoaParaEditar' => $pessoaParaEditar, 
+            'telefonesParaEditar' => $telefonesParaEditar
+        ]);
+    }
 }

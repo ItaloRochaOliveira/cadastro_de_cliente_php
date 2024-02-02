@@ -19,4 +19,4 @@ Route::get('/', [EventController::class, 'index']);
 
 Route::post('/pessoa/create', [EventController::class, 'store']);
 
-// Route::post('/pessoa/edit/{id}', [EventController::class, 'edit']);
+Route::get('/pessoa/edit/{id}', [EventController::class, 'edit']);

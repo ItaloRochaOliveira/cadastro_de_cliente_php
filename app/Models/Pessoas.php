@@ -61,18 +61,18 @@ class Pessoas extends Model
         $this->uf = $uf;
     }
 
-    public function toArray()
-    {
-        return [
-            'nome' => $this->nome,
-            'cpf' => $this->cpf,
-            'rg' => $this->rg,
-            'cep' => $this->cep,
-            'logradouro' => $this->logradouro,
-            'complemento' => $this->complemento,
-            'setor' => $this->setor,
-            'cidade' => $this->cidade,
-            'uf' => $this->uf,
-        ];
-    }
+    // public function toArray()
+    // {
+    //     return [
+    //         'nome' => $this->nome,
+    //         'cpf' => $this->cpf,
+    //         'rg' => $this->rg,
+    //         'cep' => $this->cep,
+    //         'logradouro' => $this->logradouro,
+    //         'complemento' => $this->complemento,
+    //         'setor' => $this->setor,
+    //         'cidade' => $this->cidade,
+    //         'uf' => $this->uf,
+    //     ];
+    // }
 }

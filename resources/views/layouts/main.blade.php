@@ -12,7 +12,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     <link type="text/css" rel="stylesheet" href="{{ asset('css/app.css')}}">
+
+
     <script type="module" src="{{asset ('js/index.js')}}"></script>
+
 </head>
 
 <body>

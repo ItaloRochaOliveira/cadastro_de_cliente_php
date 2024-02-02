@@ -31,12 +31,12 @@ class Telefones extends Model
         $this->id_pessoa = $id_pessoa;
     }
 
-    public function toArray()
-    {
-        return [
-            'telefone' => $this->telefone,
-            'descricao' => $this->descricao,
-            'id_pessoa' => $this->id_pessoa
-        ];
-    }
+    // public function toArray()
+    // {
+    //     return [
+    //         'telefone' => $this->telefone,
+    //         'descricao' => $this->descricao,
+    //         'id_pessoa' => $this->id_pessoa
+    //     ];
+    // }
 }

@@ -1,58 +1,69 @@
 @extends('layouts.main')
 
-@section('title', "Cadastro de clientes")
+@section('title', "Edição de clientes")
+
+
+<script>
+// Criar uma variável PHP para armazenar os dados
+<?php echo "var dados = " . json_encode($telefonesParaEditar) . ";"; ?>
+</script>
+<!-- <script type="module" src="{{ asset('js/index.js') }}"></script> -->
+
 
 @section('content')
 
-<h1>Cadastro de pessoa</h1>
+
+
+<h1>Edição de pessoa</h1>
 
 <form method="post" action="/pessoa/create">
     @csrf
     <div id="pessoa-formulario">
         <div>
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome">
+            <input type="text" name="nome" id="nome" value="{{$pessoaParaEditar->nome}}">
         </div>
 
         <div>
             <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" id="cpf">
+            <input type="text" name="cpf" id="cpf" value="{{$pessoaParaEditar->cpf}}">
         </div>
 
         <div>
             <label for="rg">RG:</label>
-            <input type="text" name="rg" id="rg">
+            <input type="text" name="rg" id="rg" value="{{$pessoaParaEditar->rg}}">
         </div>
 
         <h3>Endereço</h3>
         <div>
             <label for="cep">CEP:</label>
-            <input type="text" name="cep" id="cep">
+            <input type="text" name="cep" id="cep" value="{{$pessoaParaEditar->cep}}">
         </div>
 
         <div>
             <label for="logradouro">Logradouro:</label>
-            <input type="text" name="logradouro" id="logradouro">
+            <input type="text" name="logradouro" id="logradouro" value="{{$pessoaParaEditar->logradouro}}">
         </div>
 
         <div>
             <label for="complemento">Complemento:</label>
-            <input type="text" name="complemento" id="complemento">
+            <input type="text" name="complemento" id="complemento" value="{{$pessoaParaEditar->complemento}}">
         </div>
 
         <div>
             <label for="setor">Setor:</label>
-            <input type="text" name="setor" id="setor">
+            <input type="text" name="setor" id="setor" value="{{$pessoaParaEditar->setor}}">
         </div>
 
         <div>
             <label for="cidade">Cidade:</label>
-            <input type="text" name="cidade" id="cidade">
+            <input type="text" name="cidade" id="cidade" value="{{$pessoaParaEditar->cidade}}">
         </div>
 
         <label for="uf">UF:</label>
         <select id="uf">
-            <option value="none">Select</option>
+            <option value="{{empty($pessoaParaEditar->uf) ? 'select' : $pessoaParaEditar->uf}}">
+                {{empty($pessoaParaEditar->uf) ? "select" : $pessoaParaEditar->uf}}</option>
             @foreach ($siglas as $i => $sigla)
             <option value="{{$sigla}}">{{$sigla}}</option>
             @endforeach
@@ -67,11 +78,16 @@
             </tr>
         </thead>
 
+        <div id="dados" data-pessoa="{{ json_encode($pessoaParaEditar) }}"></div>
+
+
         <tbody id="telefone-descricao"></tbody>
         <div id="adicionar-linha-telefone">+</div>
     </table>
 
-    <button type="submit">Gravar</button>
+    <button type="submit" name="/pessoa/edit/id">Gravar</button>
+    <!-- <button type="submit" name="/pessoa/delete">Excluir</button> -->
+
 </form>
 
 <div></div>
@@ -104,6 +120,7 @@
                 @foreach ($pessoa->telefone as $i => $telefone)
                 <p>{{$telefone->telefone}} - {{$telefone->descricao}}</p>
                 @endforeach
+
                 @endif
             </th>
             <th><button><a href="/pessoa/edit/{{$pessoa->id}}">editar</a></button></th>
@@ -111,5 +128,6 @@
         @endforeach
     </tbody>
 </table>
+
 
 @endsection
