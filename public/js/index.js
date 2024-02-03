@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "adicionar-linha-telefone"
         );
 
+        console.log(tabelaPricipal);
+
         const dateExist = typeof dados != "undefined";
 
         if (dateExist) {
@@ -45,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
             }
         }
+
+        console.log(tabelaPricipal);
 
         addTabelaTelefone.addEventListener("click", () => {
             tabelaPricipal.insertAdjacentHTML(
@@ -107,14 +111,22 @@ document.addEventListener("DOMContentLoaded", function () {
         cpf.maxLength = 14;
         const cep = document.getElementById("cep");
         cep.maxLength = 10;
-        // const tableTelephones = document.getElementsByClassName(".telefone");
+        const tableTelephones = document.getElementsByClassName("telefone");
+
+        console.log(tableTelephones);
 
         rg.addEventListener("input", () => {
             rg.value = rg.value.replace(/\D/g, "");
-            rg.value = rg.value.replace(
-                /(\d{2})(\d{3})(\d{3})(\d{1})$/,
-                "$1.$2.$3-$4"
-            );
+            rg.value =
+                String(rg.value).length <= 5
+                    ? rg.value.replace(/(\d{2})(\d{1})/, "$1.$2")
+                    : String(rg.value).length >= 5 &&
+                      String(rg.value).length <= 8
+                    ? rg.value.replace(/(\d{2})(\d{3})(\d{1})/, "$1.$2.$3")
+                    : rg.value.replace(
+                          /(\d{2})(\d{3})(\d{3})(\d{1,2})/,
+                          "$1.$2.$3-$4"
+                      );
         });
 
         cpf.addEventListener("input", () => {
@@ -139,12 +151,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     : cep.value.replace(/(\d{2})(\d{3})(\d{1})/, "$1.$2-$3");
         });
 
-        // tableTelephones.addEventListener("input", () => {
-        //     console.log(tableTelephones.value);
-        //     tableTelephones.forEach((input) => {
-        //         console.log(input.value);
-        //     });
-        // });
+        Array.from(tableTelephones).forEach((input) => {
+            input.addEventListener("input", () => {
+                input.maxLength = 15;
+                input.value = input.value.replace(/\D/g, "");
+                console.log(String(input.value).length < 10);
+                input.value =
+                    String(input.value).length <= 6
+                        ? input.value.replace(/(\d{2})(\d{1})/, "($1) $2")
+                        : String(input.value).length >= 7 &&
+                          String(input.value).length < 11
+                        ? input.value.replace(
+                              /(\d{2})(\d{4})(\d{1})/,
+                              "($1) $2-$3"
+                          )
+                        : input.value.replace(
+                              /(\d{2})(\d{5})(\d{1})/,
+                              "($1) $2-$3"
+                          );
+            });
+        });
     }
 
     telephoneTableEvents();
